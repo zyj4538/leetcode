@@ -1,0 +1,49 @@
+请你来实现一个 myAtoi(string s) 函数，使其能将字符串转换成一个 32 位有符号整数（类似 C/C++ 中的 atoi 函数）。
+
+过滤空格
+整数符号
+异常条件
+最大最小值判断
+
+
+代码：
+class Solution {
+public:
+    int myAtoi(string s) {
+        int len = s.length();
+
+        int index = 0;
+        int sign = 1;
+        while(index<len)
+        {
+            if(s[index]!=' ')
+                break;
+            index++;
+        }
+        if(index==len)
+            return 0;
+
+        if(s[index]=='+')
+            index++;
+        else if(s[index]=='-')
+        {
+            sign=-1;
+            index++;
+        }
+        long res = 0;
+
+        while(index<len)
+        {
+            char curChar = s[index];
+            if(curChar<'0' || curChar>'9')
+                break;
+            if(res>INT_MAX/10 ||(res==INT_MAX/10 && (curChar-'0')>INT_MAX%10))
+                return INT_MAX;
+            if(res<INT_MIN/10 || (res==INT_MIN/10 && (curChar-'0')>-(INT_MIN%10)))
+                return INT_MIN;
+            res = res*10 + sign*(curChar-'0');
+            index++;
+        }
+        return res;
+    }
+};
