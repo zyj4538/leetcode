@@ -1,0 +1,32 @@
+给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。
+
+代码：
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int>vec;
+        if(matrix.size()==0)
+            return vec;
+        int rows = matrix.size(), columns = matrix[0].size();
+        int left=0,right=matrix[0].size()-1;
+        int top=0,bottom=matrix.size()-1;
+
+        while(left<=right && top<=bottom){
+            for(int i=left;i<=right;i++)
+                vec.push_back(matrix[top][i]);
+            for(int j=top+1;j<=bottom;j++)
+                vec.push_back(matrix[j][right]);
+            if(left<right && top<bottom){
+                for(int i=right-1;i>=left;i--)
+                    vec.push_back(matrix[bottom][i]);
+                for(int j=bottom-1;j>top;j--)
+                    vec.push_back(matrix[j][left]);
+            }
+            top++;
+            bottom--;
+            left++;
+            right--;
+        }
+        return vec;
+    }
+};

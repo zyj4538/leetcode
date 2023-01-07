@@ -1,0 +1,36 @@
+给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。
+
+代码：
+class Solution {
+public:
+    vector<vector<int>> result;
+    vector<vector<int>> permute(vector<int>& nums) {
+
+        int n = nums.size();
+        if (n== 1) return {nums};
+        vector<int>track;
+        /// 传入初始数组，及要填充的数组
+        backTrace(nums,track,0);
+        return result;
+    }
+    void backTrace(vector<int>& nums,vector<int>& track,int first){
+        /// 边界状态，如果遍历到叶子结点把它加入res数组
+        if (track.size() == nums.size()){
+            result.emplace_back(track);
+            return;
+        }
+        int n = nums.size();
+        for (int i = 0;i<n;i++){
+            /// 是否存在
+            if (count(track.begin(),track.end(),nums[i])){
+                continue;
+            }
+            /// 放进track数组，
+            track.push_back(nums[i]);
+            /// 往下一层遍历
+            backTrace(nums,track,first+1);
+            /// 回退
+            track.pop_back();
+        }
+    }
+};

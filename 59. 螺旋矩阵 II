@@ -1,0 +1,28 @@
+给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。
+代码：
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        int curNum=1;
+        int left = 0,right=n-1;
+        int top=0, bottom=n-1;
+        vector<vector<int>>vec(n,vector<int>(n));
+        while(left<=right && top<=bottom){
+            for(int i=left;i<=right;i++)
+                vec[top][i]=curNum++;
+            for(int j=top+1;j<=bottom;j++)
+                vec[j][right]=curNum++;
+            if(left<right && top<bottom){
+                for(int i=right-1;i>=left;i--)
+                    vec[bottom][i]=curNum++;
+                for(int j=bottom-1;j>top;j--)
+                    vec[j][left]=curNum++;
+            }
+            top++;
+            bottom--;
+            left++;
+            right--;
+        }
+        return vec;
+    }
+};
