@@ -1,0 +1,29 @@
+给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。
+
+求在该柱状图中，能够勾勒出来的矩形的最大面积。
+
+
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        int n = heights.size();
+        int ans = 0;
+        // 枚举左边界
+        for (int left = 0; left < n; ++left) {
+            int minHeight = INT_MAX;
+            // 枚举右边界
+            for (int right = left; right < n; ++right) {
+                // 确定高度
+                minHeight = min(minHeight, heights[right]);
+                // 计算面积
+                ans = max(ans, (right - left + 1) * minHeight);
+            }
+        }
+        return ans;
+    }
+};
+
+作者：LeetCode-Solution
+链接：https://leetcode.cn/problems/largest-rectangle-in-histogram/solution/zhu-zhuang-tu-zhong-zui-da-de-ju-xing-by-leetcode-/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
