@@ -1,0 +1,27 @@
+编写一个高效的算法来判断 m x n 矩阵中，是否存在一个目标值。该矩阵具有如下特性：
+
+每行中的整数从左到右按升序排列。
+每行的第一个整数大于前一行的最后一个整数。
+
+来源：力扣（LeetCode）
+链接：https://leetcode.cn/problems/search-a-2d-matrix
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>> matrix, int target) {
+        auto row = upper_bound(matrix.begin(), matrix.end(), target, [](const int b, const vector<int> &a) {
+            return b < a[0];
+        });
+        if (row == matrix.begin()) {
+            return false;
+        }
+        --row;
+        return binary_search(row->begin(), row->end(), target);
+    }
+};
+
+作者：LeetCode-Solution
+链接：https://leetcode.cn/problems/search-a-2d-matrix/solution/sou-suo-er-wei-ju-zhen-by-leetcode-solut-vxui/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

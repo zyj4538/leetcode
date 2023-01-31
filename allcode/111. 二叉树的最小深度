@@ -1,0 +1,33 @@
+给定一个二叉树，找出其最小深度。
+
+最小深度是从根节点到最近叶子节点的最短路径上的节点数量。
+
+说明：叶子节点是指没有子节点的节点。
+
+class Solution {
+public:
+    int minDepth(TreeNode *root) {
+        if (root == nullptr) {
+            return 0;
+        }
+
+        if (root->left == nullptr && root->right == nullptr) {
+            return 1;
+        }
+
+        int min_depth = INT_MAX;
+        if (root->left != nullptr) {
+            min_depth = min(minDepth(root->left), min_depth);
+        }
+        if (root->right != nullptr) {
+            min_depth = min(minDepth(root->right), min_depth);
+        }
+
+        return min_depth + 1;
+    }
+};
+
+作者：LeetCode-Solution
+链接：https://leetcode.cn/problems/minimum-depth-of-binary-tree/solution/er-cha-shu-de-zui-xiao-shen-du-by-leetcode-solutio/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

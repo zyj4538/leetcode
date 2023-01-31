@@ -1,0 +1,46 @@
+给定一个二叉树的根节点 root ，返回 它的 中序 遍历 。
+
+中序遍历：按照访问左子树——根节点——右子树的方式遍历这棵树，而在访问左子树或者右子树的时候我们按照同样的方式遍历，直到遍历完整棵树。因此整个遍历过程天然具有递归的性质，我们可以直接用递归函数来模拟这一过程。
+
+链接：https://leetcode.cn/problems/binary-tree-inorder-traversal/solution/er-cha-shu-de-zhong-xu-bian-li-by-leetcode-solutio/
+
+
+递归代码：
+class Solution {
+public:
+    void inorder(TreeNode* root, vector<int>& res) {
+        if (!root) {
+            return;
+        }
+        inorder(root->left, res);
+        res.push_back(root->val);
+        inorder(root->right, res);
+    }
+
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        inorder(root, res);
+        return res;
+    }
+};
+
+----------
+迭代方法：
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> res;
+        stack<TreeNode*> stk;
+        while (root != nullptr || !stk.empty()) {
+            while (root != nullptr) {
+                stk.push(root);
+                root = root->left;
+            }
+            root = stk.top();
+            stk.pop();
+            res.push_back(root->val);
+            root = root->right;
+        }
+        return res;
+    }
+};

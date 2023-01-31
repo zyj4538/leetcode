@@ -1,0 +1,32 @@
+给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
+
+ class Solution {
+public:
+    ListNode* swapPairs(ListNode* head) {
+        if ( head == nullptr || head->next == nullptr )
+            return head;
+        ListNode* p = head;
+        while ( p && p->next )
+        {
+            swap(p->val, p->next->val);
+            p = p->next->next;
+        }
+        return head;
+    }
+
+----------
+class Solution {
+public:
+    ListNode* removeElements(ListNode* head, int val) {
+        if (head == nullptr) {
+            return head;
+        }
+        head->next = removeElements(head->next, val);
+        return head->val == val ? head->next : head;
+    }
+};
+
+作者：LeetCode-Solution
+链接：https://leetcode.cn/problems/remove-linked-list-elements/solution/yi-chu-lian-biao-yuan-su-by-leetcode-sol-654m/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

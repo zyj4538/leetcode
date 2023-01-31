@@ -1,0 +1,31 @@
+给你二叉树的根节点 root ，返回其节点值的 层序遍历 。 （即逐层地，从左到右访问所有节点）。
+
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>>vecs;
+        if(root==nullptr)
+            return vecs;
+        queue<TreeNode*>Q;
+        Q.push(root);
+
+        while(!Q.empty())
+        {
+            int sz = Q.size();
+            vector<int>vec;
+            while(sz>0)
+            {
+                TreeNode * t = Q.front();
+                Q.pop();
+                vec.push_back(t->val);
+                if(t->left)
+                    Q.push(t->left);
+                if(t->right)
+                    Q.push(t->right);
+                sz--;
+            }
+            vecs.push_back(vec);
+        }
+        return vecs;
+    }
+};

@@ -1,0 +1,31 @@
+给你一个整数数组 nums ，找出并返回所有该数组中不同的递增子序列，递增子序列中 至少有两个元素 。你可以按 任意顺序 返回答案。
+
+数组中可能含有重复元素，如出现两个整数相等，也可以视作递增序列的一种特殊情况。
+
+来源：力扣（LeetCode）
+链接：https://leetcode.cn/problems/non-decreasing-subsequences
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+
+vector<vector<int>> ans;
+vector<int> temp;
+void dfs(int cur, vector<int>& nums) {
+    if (cur == nums.size()) {
+        // 判断是否合法，如果合法判断是否重复，将满足条件的加入答案
+        if (isValid() && notVisited()) {
+            ans.push_back(temp);
+        }
+        return;
+    }
+    // 如果选择当前元素
+    temp.push_back(nums[cur]);
+    dfs(cur + 1, nums);
+    temp.pop_back();
+    // 如果不选择当前元素
+    dfs(cur + 1, nums);
+}
+
+作者：LeetCode-Solution
+链接：https://leetcode.cn/problems/non-decreasing-subsequences/solution/di-zeng-zi-xu-lie-by-leetcode-solution/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

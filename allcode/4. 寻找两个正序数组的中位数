@@ -1,0 +1,30 @@
+题目：给定两个大小分别为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的 中位数 。
+算法的时间复杂度应该为 O(log (m+n)) 。
+
+https://leetcode.cn/problems/median-of-two-sorted-arrays/
+
+代码：
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int m=nums1.size();
+        int n = nums2.size();
+        int len= m + n;
+        int astart=0,bstart=0;
+        int left=-1,right=-1;
+
+        for (int i=0;i<=len/2;i++)
+        {
+            left = right;
+            if(astart<m && (bstart>=n || nums1[astart]<nums2[bstart]))
+                right=nums1[astart++];
+            else
+                right=nums2[bstart++];
+        }
+
+        if(len%2==0)
+            return (left+right)/2.0;
+        else
+            return right;
+    }
+};

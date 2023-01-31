@@ -1,0 +1,32 @@
+给你一个整数数组 nums ，你需要找出一个 连续子数组 ，如果对这个子数组进行升序排序，那么整个数组都会变为升序排序。
+
+请你找出符合题意的 最短 子数组，并输出它的长度。
+
+来源：力扣（LeetCode）
+链接：https://leetcode.cn/problems/shortest-unsorted-continuous-subarray
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+class Solution {
+public:
+    int findUnsortedSubarray(vector<int>& nums) {
+        if (is_sorted(nums.begin(), nums.end())) {
+            return 0;
+        }
+        vector<int> numsSorted(nums);
+        sort(numsSorted.begin(), numsSorted.end());
+        int left = 0;
+        while (nums[left] == numsSorted[left]) {
+            left++;
+        }
+        int right = nums.size() - 1;
+        while (nums[right] == numsSorted[right]) {
+            right--;
+        }
+        return right - left + 1;
+    }
+};
+
+作者：LeetCode-Solution
+链接：https://leetcode.cn/problems/shortest-unsorted-continuous-subarray/solution/zui-duan-wu-xu-lian-xu-zi-shu-zu-by-leet-yhlf/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

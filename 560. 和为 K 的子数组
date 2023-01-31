@@ -1,0 +1,23 @@
+给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的连续子数组的个数 。
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int count = 0;
+        for (int start = 0; start < nums.size(); ++start) {
+            int sum = 0;
+            for (int end = start; end >= 0; --end) {
+                sum += nums[end];
+                if (sum == k) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+};
+
+作者：LeetCode-Solution
+链接：https://leetcode.cn/problems/subarray-sum-equals-k/solution/he-wei-kde-zi-shu-zu-by-leetcode-solution/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

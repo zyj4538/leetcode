@@ -1,0 +1,30 @@
+输入两棵二叉树A和B，判断B是不是A的子结构。(约定空树不是任意一个树的子结构)
+
+B是A的子结构， 即 A中有出现和B相同的结构和节点值。
+
+https://leetcode.cn/problems/shu-de-zi-jie-gou-lcof/solution/yi-pian-wen-zhang-dai-ni-chi-tou-dui-che-uhgs/
+
+
+// hasSubStructure函数是判断如果A,B根节点相同，B是不是A的子结构
+bool hasSubStructure(TreeNode*A, TreeNode*B)
+{
+    if (!B)        //递归结束条件1：A的一个节点B的对应位置没有,可以认为是子结构
+        return true;
+    if (!A || A->val != B->val)  //递归结束条件2：B的一个节点A的对应位置没有 / A,B对应位置节点值不同，此时必然不可能是子结构
+        return false;
+    return hasSubStructure(A->left, B->left) && hasSubStructure(A->right, B->right); //返回值：继续在对应位置递归判断
+}
+
+
+bool isSubStructure1(TreeNode<T> *A, TreeNode<T> *B)
+{
+    if (!A || !B)   //特殊判断
+        return false;
+    // 根节点相同的话直接进入比较，根节点不相同看B是不是A的左/右子树的子结构
+    return hasSubStructure(A, B) || isSubStructure1(A->left, B) || isSubStructure1(A->right, B);
+}
+
+作者：eh-xing-qing
+链接：https://leetcode.cn/problems/shu-de-zi-jie-gou-lcof/solution/yi-pian-wen-zhang-dai-ni-chi-tou-dui-che-uhgs/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
