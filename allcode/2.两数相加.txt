@@ -5,6 +5,15 @@
 
 https://leetcode.cn/problems/add-two-numbers/?favorite=ex0k24j
 
+初始化
+    链表头和链条尾
+    进位
+计算逻辑
+    取两个链表的数加和
+后处理
+    最后进位处理
+
+
 代码：
 class Solution {
 public:

@@ -4,19 +4,24 @@
 
 返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。
 
-代码：
+来源：力扣（LeetCode）
+链接：https://leetcode.cn/problems/best-time-to-buy-and-sell-stock
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int n = prices.size();
-        if (n == 0) return 0; // 边界条件
-        int minprice = prices[0];
-        vector<int> dp (n, 0);
-
-        for (int i = 1; i < n; i++){
-            minprice = min(minprice, prices[i]);
-            dp[i] = max(dp[i - 1], prices[i] - minprice);
+        int n = (int)prices.size(), ans = 0;
+        for (int i = 0; i < n; ++i){
+            for (int j = i + 1; j < n; ++j) {
+                ans = max(ans, prices[j] - prices[i]);
+            }
         }
-        return dp[n - 1];
+        return ans;
     }
 };
+
+作者：LeetCode-Solution
+链接：https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/solution/121-mai-mai-gu-piao-de-zui-jia-shi-ji-by-leetcode-/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
