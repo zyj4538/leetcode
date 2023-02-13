@@ -8,6 +8,8 @@
 链接：https://leetcode.cn/problems/path-sum-ii
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
+说明：
+vector中没有push_front和pop_front，只有push_back和pop_back。
 
 class Solution {
 public:
@@ -33,8 +35,3 @@ public:
         return ret;
     }
 };
-
-作者：LeetCode-Solution
-链接：https://leetcode.cn/problems/path-sum-ii/solution/lu-jing-zong-he-ii-by-leetcode-solution/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
