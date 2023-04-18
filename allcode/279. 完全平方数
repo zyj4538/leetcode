@@ -5,23 +5,3 @@
 来源：力扣（LeetCode）
 链接：https://leetcode.cn/problems/perfect-squares
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
-
-class Solution {
-public:
-    int numSquares(int n) {
-        vector<int> f(n + 1);
-        for (int i = 1; i <= n; i++) {
-            int minn = INT_MAX;
-            for (int j = 1; j * j <= i; j++) {
-                minn = min(minn, f[i - j * j]);
-            }
-            f[i] = minn + 1;
-        }
-        return f[n];
-    }
-};
-
-作者：LeetCode-Solution
-链接：https://leetcode.cn/problems/perfect-squares/solution/wan-quan-ping-fang-shu-by-leetcode-solut-t99c/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

@@ -16,3 +16,20 @@ public:
         return ans;
     }
 };
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int n = nums.size();
+        vector<int>dp(n,0);
+        dp[0]=nums[0];
+        int maxval = nums[0];
+        for(int i=1;i<nums.size();i++){
+            int x=nums[i];
+            dp[i] = max(dp[i-1]+x,x);
+            maxval = max(dp[i],maxval);
+        }
+        return maxval;
+    }
+};
+
